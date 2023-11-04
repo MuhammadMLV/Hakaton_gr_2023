@@ -8,5 +8,5 @@ class SignUp(CreateView):
     """Получает главную страницу при успешной авторизации."""
 
     form_class = CreationForm
-    success_url = reverse_lazy('posts:index')
+    success_url = reverse_lazy('events:index')
     template_name = 'users/signup.html'
