@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Профайл пользователя {{ author.get_full_name }}{% endblock %}
+{% block content %}
+  <div class="container py-5">
+    <h1>Все публикации пользователя {{ author.get_full_name }} </h1>
+    <h3>Всего публикаций: {{ author.posts.count }} </h3>
+    <h4>Подписчиков: {{ author.following.count }}</h4>
+    <h4>Подписок: {{ author.follower.count }}</h4>
+    {% include 'events/includes/follow_btn.html' %}
+    {% for post in page_obj %}
+      {% include 'events/includes/post_card.html' %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% include 'posts/includes/paginator.html' %}

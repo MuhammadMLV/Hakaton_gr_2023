@@ -17,10 +17,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
+    'about.apps.AboutConfig',
+
+    'sorl.thumbnail',
 
 ]
 

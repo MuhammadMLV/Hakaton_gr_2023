@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load cache %}
+
+{% block title %}
+  Мероприятия по подпискам
+{% endblock %}
+
+{% block content %}
+  {% include 'events/includes/switcher.html' with follow=True %}
+  <div class="container py-5">
+    <h1>Мероприятия по подпискам</h1>
+    {% for post in page_obj %}
+      {% include 'events/includes/post_card.html' %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% include 'events/includes/paginator.html' %}

@@ -1,10 +1,10 @@
 {% load static %}
-<nav class="navbar navbar-light" style="background-color: lightskyblue">
+<nav class="navbar navbar-light" style="background-color: LightSkyBlue">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'posts:index' %}">
-      <img src="{% static 'img/logo.png' %}" width="30" height="30"
+    <a class="navbar-brand" href="{% url 'events:index' %}">
+      <img src="{% static 'img/logo192.png' %}" width="35" height="35"
          class="d-inline-block align-top" alt="">
-      <span style="color:red">E</span>vents
+      <span style="color:red">Event</span>Hub
     </a>
     {% with request.resolver_match.view_name as view_name %}
     <ul class="nav nav-pills">
@@ -16,8 +16,8 @@
       {% if request.user.is_authenticated  %}
         <li class="nav-item">
           <a class="nav-link
-            {% if view_name == 'posts:post_create' %}active
-            {% endif %}" href="{% url 'posts:post_create' %}">Создать мероприятие</a>
+            {% if view_name == 'events:event_create' %}active
+            {% endif %}" href="{% url 'events:event_create' %}">Создать мероприятие</a>
         </li>
         <li class="nav-item">
           <a class="nav-link
@@ -31,8 +31,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link
-            {% if view_name  == 'posts:profile' %} active
-            {% endif %}" href="{% url 'posts:profile' user.username %}">
+            {% if view_name  == 'events:profile' %} active
+            {% endif %}" href="{% url 'events:profile' user.username %}">
               Пользователь: {{ user.username }}</a>
         </li>
         {% else %}

@@ -1,0 +1,29 @@
+{% load thumbnail %}
+<article>
+  <ul>
+    <li>
+      Автор: {{ post.organizer.get_full_name }}
+    </li>
+    <li>
+      Дата публикации: {{ post.pub_date|date:"d E Y" }}
+    </li>
+  </ul>
+  {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+    <img class="card-img my-2" src="{{ im.url }}">
+  {% endthumbnail %}
+  <p>{{ post.text|linebreaksbr }}</p>
+  {% with request.resolver_match.view_name as view_name %}
+    {% if view_name != 'events:category_list' %}
+      {% if post.category %}
+        <a href="{% url 'events:category_list' post.category.slug %}">
+          Все записи категории {{ post.category.title }}
+        </a>
+      {% else %}
+        <p>У публикации нет группы</p>
+      {% endif %}
+    {% endif %}
+  {% endwith %}
+  <p>
+    <a href="{% url 'events:event_detail' post.pk %}">Подробная информация</a>
+  </p>
+</article>

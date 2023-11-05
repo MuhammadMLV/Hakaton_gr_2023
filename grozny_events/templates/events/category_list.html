@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Мероприятия категории {{ category.title }}{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1>{{ category.title }}</h1>
+    <p>{{ category.description }}</p>
+    {% for post in page_obj %}
+      {% include 'events/includes/event_card.html' %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% include 'events/includes/paginator.html' %}

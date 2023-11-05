@@ -1,0 +1,15 @@
+{% if request.user.is_active and request.user != author %}
+  {% if following %}
+    <a
+     class="btn btn-lg btn-light"
+     href="{% url 'events:profile_unfollow' author.username %}" role="button">
+      Отписаться
+    </a>
+  {% else %}
+    <a
+      class="btn btn-lg btn-primary"
+      href="{% url 'events:profile_follow' author.username %}" role="button">
+        Подписаться
+    </a>
+  {% endif %}
+{% endif %}

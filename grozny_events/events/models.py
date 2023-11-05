@@ -34,7 +34,10 @@ class Event(models.Model):
         null=False, verbose_name='Место проведения'
     )
     description = models.TextField(verbose_name='Описание мероприятия')
-    additionally = models.CharField(max_length=250, verbose_name='Дополнительно')
+    additionally = models.CharField(
+        max_length=250, verbose_name='Дополнительно',
+        blank=True, null=True,
+    )
     organizer = models.ForeignKey(User, verbose_name='Организатор', on_delete=models.CASCADE)
     image = models.ImageField(
         blank=True,
@@ -70,7 +73,7 @@ class Comment(models.Model):
         User,
         related_name='comments',
         verbose_name='Автор',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     text = models.TextField(
         verbose_name='Комментарий',
@@ -89,3 +92,31 @@ class Comment(models.Model):
         ordering = ('-created', )
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(
+        User,
+        related_name='follower',
+        on_delete=models.CASCADE,
+        verbose_name='Подписчик'
+    )
+    author = models.ForeignKey(
+        User,
+        related_name='following',
+        on_delete=models.CASCADE,
+        verbose_name='Автор'
+    )
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'author'],
+                name='unique_user_author'
+            )
+        ]
+
+    def __str__(self):
+        return f'{self.user} подписан на {self.author}'
