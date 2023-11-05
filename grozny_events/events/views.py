@@ -46,7 +46,7 @@ def event_edit(request, event_id):
     if request.method == 'POST' and form.is_valid():
         form.save()
 
-        return redirect('posts:post_detail', event.pk)
+        return redirect('events:event_detail', event.pk)
 
     context = {'form': form,
                'is_edit': True,
