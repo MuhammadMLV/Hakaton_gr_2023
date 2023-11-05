@@ -9,7 +9,7 @@
     <h4>Подписок: {{ author.follower.count }}</h4>
     {% include 'events/includes/follow_btn.html' %}
     {% for post in page_obj %}
-      {% include 'events/includes/post_card.html' %}
+      {% include 'events/includes/event_card.html' %}
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
   </div>

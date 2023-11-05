@@ -38,7 +38,12 @@ class Event(models.Model):
         max_length=250, verbose_name='Дополнительно',
         blank=True, null=True,
     )
-    organizer = models.ForeignKey(User, verbose_name='Организатор', on_delete=models.CASCADE)
+    organizer = models.ForeignKey(
+        User,
+        verbose_name='Организатор',
+        on_delete=models.CASCADE,
+        related_name='events',
+        )
     image = models.ImageField(
         blank=True,
         upload_to='posts/',
